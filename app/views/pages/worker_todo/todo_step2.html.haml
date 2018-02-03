@@ -1,0 +1,57 @@
+- content_for :page_title, t('manager.todos.labels.task_manager')
+- content_for :previous_path, todos_path
+.todo-dash-container
+  .container
+    #todo.row.todo-info
+      .twelvecol
+        .profile-thumb
+          = image_tag 'todo_list_icon.jpg', class: 'img-responsive center-block'
+        .row
+          .form-group
+            %label=t('manager.todos.show.label1')
+            %input.form-control{:readonly => "true", :type => "text", :value => "Run Key Task"}/
+          .form-group
+            %label=t('manager.todos.show.label2')
+            %input.form-control{:readonly => "true", :type => "text", :value => ""}/
+          .form-group
+            %label=t('manager.todos.show.label4')
+            %input.form-control{:readonly => "true", :type => "text", :value => ""}/
+        .row
+          .info
+            %h2=t('manager.todos.labels.tasks')
+            %ul#complete-task
+              %li.todo-li-item
+                .row{:class => 'odd'}
+                  .col-md-1.col-sm-1.col-xs-1.text-right.no-h-padding
+                    %p 1
+                  .col-md-8.col-sm-8.col-xs-8.no-h-padding
+                    .col-md-2.col-sm-2.col-xs-12
+                      %p=t('manager.todos.show.label1')
+                    .col-md-10.col-sm-10.col-xs-12
+                      %p Run Key Task
+                    .col-md-2.col-sm-2.col-xs-12
+                      %p=t('manager.todos.show.label5')
+                    .col-md-10.col-sm-10.col-xs-12
+                      %p This is test Task               
+                    .col-md-12.col-sm-12.col-xs-12
+                      %p=t('manager.todos.show.label6')
+                    .col-md-12.col-sm-12.col-xs-12.subtask-group
+                      .subtask
+                        %i.fa.fa-check-square-o.pass
+                        %p Run Sub first task
+                      .subtask
+                        %i.fa.fa-check-square-o.pass
+                        %p Run Sub second task
+                      .subtask
+                        %i.fa.fa-check-square-o.pass
+                        %p Run Sub third task
+                  .col-md-3.col-sm-3.col-xs-3.text-right.no-h-padding
+                    %span.btn.btn-lightred-o.text-center.btn-fx-small{data:{step: 2, intro: t("guideline.worker.todo_report.step2.content")}}
+                      %i.fa.fa-check
+:javascript
+  jQuery(document).ready(function() {
+    $('#link_dashboard_guide').on('click', function(){
+      healthChildcare.guideline.introGoToStep('todo_step1', "#{t('form_labels.next')}", "#{t('form_labels.back')}", "#{t('form_labels.intro_done')}", "#{t('form_labels.intro_skip')}");
+    });       
+    healthChildcare.guideline.introGoToStep('todo_step1', "#{t('form_labels.next')}", "#{t('form_labels.back')}", "#{t('form_labels.intro_done')}", "#{t('form_labels.intro_skip')}");
+  });

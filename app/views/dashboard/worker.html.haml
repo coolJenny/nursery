@@ -1,0 +1,174 @@
+.worker-dash-container
+  = render 'nav_header'
+  .container
+    .row.content-header
+    .row.content-main
+      .col-md-5.col-sm-6.col-xs-12
+        #main-menu
+          .menu-items
+            - @permissions.each do |permission|
+              - if permission.active && permission.sub_type.to_i > 1
+                - if current_user.manager_plan_type >= permission.plan
+                  = link_to permission.path, id: permission.element, class: 'border-style-1' do
+                    = image_tag permission.image
+                    %span=t(permission.label_key)
+                - else
+                  %a.border-style-1{href: permission.path, id: permission.element}
+                    = image_tag permission.image
+                    %span=t(permission.label_key)
+              - if permission.active && permission.sub_type.to_i < 2
+                - if current_user.affiliate.certific? && current_user.affiliate.is_over_registered?
+                  = link_to '#', id: permission.element, class: 'border-style-1' do
+                    = image_tag permission.image
+                    %span=t(permission.label_key)
+                - else
+                  = link_to permission.path, id: permission.element, class: 'border-style-1' do
+                    = image_tag permission.image
+                    %span=t(permission.label_key)
+
+            / - if current_user.active_subscribed?
+            /   - if current_user.manager_plan_type == 2 || current_user.manager_plan_type == 3
+            /     = link_to results_subjects_path, id: 'item_survey' do
+            /       = image_tag 'dashboard-risk.png'
+            /       %span=t('dashboard.menu_item.risk_assessment')
+            /     = link_to instruction_path, id: 'item_instruction', title: t('dashboard.menu_tooltip.instruction') do
+            /       = image_tag 'dashboard-instruction.png'
+            /       %span=t('dashboard.menu_item.instruction') 
+            /     %a#item_todo{href: '/guide_page/worker_todo/todo_step1'}
+            /       = image_tag 'dashboard-taskmng.png'
+            /       %span=t('dashboard.menu_item.task_manager')
+            /     %a#item_illness{href: '/guide_page/worker_illness/view_dash'}
+            /       = image_tag 'dashboard-ilness-rec.png'
+            /       %span=t('dashboard.menu_item.illness_record')
+
+            /   - if current_user.manager_plan_type == 4
+            /     = link_to results_subjects_path, id: 'item_survey' do
+            /       = image_tag 'dashboard-risk.png'
+            /       %span=t('dashboard.menu_item.risk_assessment')
+            /     = link_to instruction_path, id: 'item_instruction', title: t('dashboard.menu_tooltip.instruction') do
+            /       = image_tag 'dashboard-instruction.png'
+            /       %span=t('dashboard.menu_item.instruction') 
+            /     = link_to todos_path, id: 'item_todo' do
+            /       = image_tag 'dashboard-taskmng.png'
+            /       %span=t('dashboard.menu_item.task_manager')
+            /     = link_to illnesses_path, id: 'item_illness' do
+            /       = image_tag 'dashboard-ilness.png'
+            /       %span=t('dashboard.menu_item.illness_record')
+            /     = link_to role_worker_illness_guides_path, id: 'item_illness_guide' do
+            /       = image_tag 'dashboard-ilness-rec.png'
+            /       %span=t('dashboard.menu_item.illness_guide')
+
+            / - else
+            /   %a#item_survey{href: '/guide_page/worker_survey/take_step1'}
+            /     = image_tag 'dashboard-risk.png'
+            /     %span=t('dashboard.menu_item.risk_assessment')
+            /   = link_to instruction_path, id: 'item_instruction', title: t('dashboard.menu_tooltip.instruction') do
+            /     = image_tag 'dashboard-instruction.png'
+            /     %span=t('dashboard.menu_item.instruction') 
+            /   %a#item_todo{href: '/guide_page/worker_todo/todo_step1'}
+            /     = image_tag 'dashboard-taskmng.png'
+            /     %span=t('dashboard.menu_item.task_manager')
+            /   %a#item_illness{href: '/guide_page/worker_illness/view_dash'}
+            /     = image_tag 'dashboard-ilness-rec.png'
+            /     %span=t('dashboard.menu_item.illness_record')
+
+      .col-md-7.col-sm-6.col-xs-12
+        = render 'notifications_worker'
+:javascript
+  jQuery(document).ready(function() {
+    $('body').css("src","background-color: #242c3f !important;");
+    $('footer.normal .container').css("top", "0");
+    $('footer.normal .container .central-footer').css("display", "none");
+
+    $("#item_message").popover({
+        container: '.content-main',
+        html: true,
+        placement: "right",
+        trigger: "hover",
+        title: function () {
+            return "#{t('guideline.benifit.message.title')}";
+        },
+        content: function () {
+            return "#{t('guideline.benifit.message.content')}";
+        }
+    });
+
+    $("#item_survey").popover({
+        container: '.content-main',
+        html: true,
+        placement: "right",
+        trigger: "hover",
+        title: function () {
+            return "#{t('guideline.benifit.survey_take.title')}";
+        },
+        content: function () {
+            return "#{t('guideline.benifit.survey_take.content')}";
+        }
+    });
+
+    $("#item_todo").popover({
+        container: '.content-main',
+        html: true,
+        placement: "right",
+        trigger: "hover",
+        title: function () {
+            return "#{t('guideline.benifit.todo_worker.title')}";
+        },
+        content: function () {
+            return "#{t('guideline.benifit.todo_worker.content')}";
+        }
+    });
+
+    $("#item_illness").popover({
+        container: '.content-main',
+        html: true,
+        placement: "right",
+        trigger: "hover",
+        title: function () {
+            return "#{t('guideline.benifit.illness_record.title')}";
+        },
+        content: function () {
+            return "#{t('guideline.benifit.illness_record.content')}";
+        }
+    });
+
+    $("#item_nofity_message").popover({
+        container: '.content-main',
+        html: true,
+        placement: "right",
+        trigger: "hover",
+        title: function () {
+            return "#{t('guideline.benifit.notify_message.title')}";
+        },
+        content: function () {
+            return "#{t('guideline.benifit.notify_message.content')}";
+        }
+    });
+
+    $("#item_instruction").popover({
+        container: '.content-main',
+        html: true,
+        placement: "right",
+        trigger: "hover",
+        title: function () {
+            return "#{t('guideline.benifit.instruction.title')}";
+        },
+        content: function () {
+            return "#{t('guideline.benifit.instruction.content')}";
+        }
+    });    
+
+    $("#item_illness_guide").popover({
+        container: '.content-main',
+        html: true,
+        placement: "right",
+        trigger: "hover",
+        title: function () {
+            return "#{t('guideline.benifit.illness_guide.title')}";
+        },
+        content: function () {
+            return "#{t('guideline.benifit.illness_guide.content')}";
+        }
+    });    
+
+  });        

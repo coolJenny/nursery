@@ -1,0 +1,58 @@
+/ %header{style: 'border-bottom : none; height: 0;'}
+/   .header-guide.no-print
+/     = link_to '#', id: 'link_dashboard_guide' do
+/       %label.title=t('guideline.title')
+/       %label.description=t('guideline.tooltip')        
+.partner-dash-container
+  = render 'nav_header'
+  .container
+    .row.content-header
+    .row.content-main
+      .col-md-5.col-sm-6.col-xs-12
+        #main-menu
+          .menu-items
+            - @permissions.each do |permission|
+              - if permission.active
+                - if current_user.affiliate.certific?
+                  - if current_user.paid_plan_type > 0
+                    %a.border-style-1{href: permission.path, id: permission.element}
+                      = image_tag permission.image
+                      %span=t(permission.label_key)
+                  - else
+                    %a.border-style-1{href: '#', id: permission.element}
+                      = image_tag permission.image
+                      %span=t(permission.label_key)                    
+                - else
+                  %a.border-style-1{href: permission.path, id: permission.element}
+                    = image_tag permission.image
+                    %span=t(permission.label_key)
+
+            / = link_to partner_messages_path, id: 'item_message' do
+            /   = image_tag 'dashboard-com-mng.png'
+            /   %span=t('dashboard.menu_item.communication')
+          .col-md-7.col-sm-6.col-xs-12
+            /= render 'notifications'
+:javascript
+  jQuery(document).ready(function() {
+    $('body').css("src","background-color: #242c3f !important;");
+    $('footer.normal .container').css("top", "0");
+    $('footer.normal .container .central-footer').css("display", "none");
+
+    $('#link_dashboard_guide').on('click', function(){
+      window.location.href = '/guide_page/partner_message/dash';
+    });    
+
+    $("#item_message").popover({
+        container: '.content-main',
+        html: true,
+        placement: "right",
+        trigger: "hover",
+        title: function () {
+            return "#{t('guideline.benifit.message.title')}";
+        },
+        content: function () {
+            return "#{t('guideline.benifit.message.content')}";
+        }
+    });
+    
+  });

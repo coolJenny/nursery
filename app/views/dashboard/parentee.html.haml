@@ -1,0 +1,92 @@
+.parentee-dash-container
+  = render 'nav_header'
+  .container
+    .row.content-header
+    .row.content-main
+      .col-md-5.col-sm-6.col-xs-12
+        #main-menu
+          .menu-items
+            - @permissions.each do |permission|
+              - if permission.active
+                - if current_user.manager_plan_type >= permission.plan
+                  = link_to permission.path, id: permission.element, class: 'border-style-1' do
+                    = image_tag permission.image
+                    %span=t(permission.label_key)
+                - else
+                  %a.border-style-1{href: permission.path, id: permission.element}
+                    = image_tag permission.image
+                    %span=t(permission.label_key)
+          
+            / = link_to results_subjects_path, id: 'item_survey' do
+            /   = image_tag 'dashboard-risk.png'
+            /   %span=t('dashboard.menu_item.risk_assessment')
+            / = link_to instruction_path, id: 'item_instruction' do
+            /   = image_tag 'dashboard-instruction.png'
+            /   %span=t('dashboard.menu_item.instruction') 
+            / = link_to list_messages_path(role: current_user.role, list_type: 'received'), id: 'item_message',  'data-step': '15', 'data-intro': t('user_guide.menu.parent_message') do
+            /   = image_tag 'dashboard-com-mng.png'
+            /   %span=t('dashboard.menu_item.communication')
+            / = link_to role_parentee_illness_guides_path, id: 'item_illness_guide' do
+            /   = image_tag 'dashboard-ilness-rec.png'
+            /   %span=t('dashboard.menu_item.illness_guide')
+      .col-md-7.col-sm-6.col-xs-12
+        = render 'notifications'
+:javascript
+  jQuery(document).ready(function() {
+    $('body').css("src","background-color: #242c3f !important;");
+    $('footer.normal .container').css("top", "0");
+    $('footer.normal .container .central-footer').css("display", "none");
+
+    $("#item_survey").popover({
+        container: '.content-main',
+        html: true,
+        placement: "right",
+        trigger: "hover",
+        title: function () {
+            return "#{t('guideline.benifit.survey.title')}";
+        },
+        content: function () {
+            return "#{t('guideline.benifit.survey.content')}";
+        }
+    });
+
+    $("#item_message").popover({
+        container: '.content-main',
+        html: true,
+        placement: "right",
+        trigger: "hover",
+        title: function () {
+            return "#{t('guideline.benifit.message.title')}";
+        },
+        content: function () {
+            return "#{t('guideline.benifit.message.content')}";
+        }
+    });
+
+    $("#item_instruction").popover({
+        container: '.content-main',
+        html: true,
+        placement: "right",
+        trigger: "hover",
+        title: function () {
+            return "#{t('guideline.benifit.instruction.title')}";
+        },
+        content: function () {
+            return "#{t('guideline.benifit.instruction.content')}";
+        }
+    });    
+
+    $("#item_illness_guide").popover({
+        container: '.content-main',
+        html: true,
+        placement: "right",
+        trigger: "hover",
+        title: function () {
+            return "#{t('guideline.benifit.illness_guide.title')}";
+        },
+        content: function () {
+            return "#{t('guideline.benifit.illness_guide.content')}";
+        }
+    });    
+
+  });        

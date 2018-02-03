@@ -1,0 +1,36 @@
+- content_for :page_title, t('manager.todos.labels.task_manager')
+.todo-dash-container
+  .container
+    #todo.row.todo-report-info
+      .twelvecol
+        %a#print-todo.btn.btn-normal.btn-yellow{:href => "#", data:{step: 5, intro: t("guideline.manager.todo_report.step5.content")}} Print
+        .profile-thumb
+          = image_tag 'todo_list_icon.jpg', class: 'img-responsive center-block'
+        .info
+          %h2=t('manager.todos.labels.add_filter') 
+          %p
+            =t('manager.todos.labels.start_date')             
+            14/12/2016 at 02:08AM
+          %p
+            =t('manager.todos.labels.end_date')           
+            16/12/2016 at 02:08AM
+      .row.todo-report
+        .sixcol
+          %h3 Run Key Task
+          %p This is test Task
+          %p
+            =t('manager.todos.labels.complete')               
+            %span.yellow 80
+          %p
+            =t('manager.todos.labels.incomplete')               
+            %span.red 20
+        .sixcol.last
+          %canvas.pie-chart{:height => "150", :id => "piePaymentTypeChart1", :width => "150"}
+          = render partial: 'shared/chart/pie', format: [:html], locals: { datasets:  Hash(complete: { value: 80, color: "#ffc30b" }, incomplete: { value: 20, color: '#ff5637' }), id: "piePaymentTypeChart1"}
+:javascript
+  jQuery(document).ready(function() {
+    healthChildcare.guideline.dashboarStep("#{t('form_labels.next')}", "#{t('form_labels.back')}", "#{t('form_labels.intro_done')}", "#{t('form_labels.intro_skip')}");
+    $('#link_dashboard_guide').on('click', function(){
+      healthChildcare.guideline.dashboarStep("#{t('form_labels.next')}", "#{t('form_labels.back')}", "#{t('form_labels.intro_done')}", "#{t('form_labels.intro_skip')}");
+    });    
+  });                  

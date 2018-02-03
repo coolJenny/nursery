@@ -1,0 +1,174 @@
+<div class="container mgbtm-100">
+  <h3 class="heading-letter text-dark-pink subtitle-1 red-title text-center">
+    <%= t('register.parentee.title').html_safe %>
+  </h3>
+  <h4 class="text-dark-pink subtitle-1 text-center">
+    <%= t('register.parentee.subtitle').html_safe %>
+  </h4>
+  <div class="gap-30"></div>
+  <div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+      <script src="https://fast.wistia.com/embed/medias/muu5axh3f8.jsonp" async></script><script src="https://fast.wistia.com/assets/external/E-v1.js" async></script><div class="wistia_responsive_padding" style="padding:61.67% 0 0 0;position:relative;"><div class="wistia_responsive_wrapper" style="height:100%;left:0;position:absolute;top:0;width:100%;"><div class="wistia_embed wistia_async_muu5axh3f8 videoFoam=true" style="height:100%;width:100%">&nbsp;</div></div></div>
+    </div>
+    <div class="col-md-2"></div>
+  </div>
+  <div class="gap-30"></div>
+  <div class="row">
+    <div class="col-xs-12 text-center">
+      <!-- Button trigger modal -->
+      <div class="row">
+        <div class="col-sm-4 hidden-xs"></div>
+        <div class="col-sm-4 col-xs-12">
+          <button type="button" class="btn btn-primary btn-style-1" data-toggle="modal" data-target="#exampleModal">
+            <%= t('register.parentee.button_text').html_safe %>
+          </button>          
+        </div>
+        <div class="col-sm-4 hidden-xs"></div>
+      </div>
+
+      <br>
+      <br>
+      <br>
+
+      <!-- Modal -->
+      <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-1 modal-lg" role="document">
+          <div class="modal-content">
+            <div class="modal-body no-padding-top">
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true"><img src="/assets/close-color.png" alt=""></span>
+              </button>
+              <div class="row row-flex">
+                <div class="col-xs-12 col-sm-6 col-flex">
+                  <div class="boxer">
+                    <p class="paragraph text-left"><b><%= t('register_popup.title').html_safe %></b><br><%= t('register_popup.description').html_safe %></p>
+                    <h4></h4>
+                    <div style="margin-top: 40px;margin-bottom: 80px">
+                      <%= simple_form_for(@user, url: "registration/create",  :html => {:class => 'form-horizontal' }) do |f| %>
+                        <%= f.input :daycare_name, label: false, wrapper_html: { class: "form-group" }, input_html: { class: "form-control input-lg", placeholder: "Enter daycare name " }, required: true %>
+                        <%= f.input :name, label: false, wrapper_html: { class: "form-group" }, input_html: { class: "form-control input-lg", placeholder: "Name" }, required: true %>
+                        <%= f.input :email, label: false, as: :string, wrapper_html: { class: "form-group" }, input_html: { class: "form-control input-lg", placeholder: "Email", required: true } %>
+                        <%= f.input :mobile, label: false, as: :string, wrapper_html: { class: "form-group" }, input_html: { class: "form-control input-lg", placeholder: "Mobile", required: true } %>
+                        <div class="gap-30"></div>
+                        <%= f.button :submit, t('register_popup.join_button'), class: "btn-style-1" %>
+                      <% end %>
+                    </div>
+                  </div>
+                </div>
+                <div class="col-sm-6 col-flex hidden-xs" style="background: #fefbfa">
+                  <div class="boxer text-left">
+                    <p class="paragraph pink-color text-left">
+                      <b><%= t('register_popup.paragraph').html_safe %></b>
+                    </p>
+                    <div class="row">
+                      <div class="col-xs-2" style="margin-top: 10px">
+                        <%= image_tag "icons/9" %>
+                      </div>
+                      <div class="col-xs-10" style="padding-left: 22px">
+                        <p class="paragraph text-left"><b><%= t('registration.title1') %></b> <br> <%= t('registration.desc1') %></p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-2" style="margin-top: 10px">
+                        <%= image_tag "icons/2" %>
+                      </div>
+                      <div class="col-xs-10" style="padding-left: 22px">
+                        <p class="paragraph text-left"><b><%= t('registration.title2') %></b> <br> <%= t('registration.desc2') %></p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-2" style="margin-top: 10px">
+                        <%= image_tag "icons/3" %>
+                      </div>
+                      <div class="col-xs-10" style="padding-left: 22px">
+                        <p class="paragraph text-left"><b><%= t('registration.title3') %></b> <br> <%= t('registration.desc3') %></p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-2" style="margin-top: 10px">
+                        <%= image_tag "icons/14" %>
+                      </div>
+                      <div class="col-xs-10" style="padding-left: 22px">
+                        <p class="paragraph text-left"><b><%= t('registration.title4') %></b> <br> <%= t('registration.desc4') %></p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-2" style="margin-top: 10px">
+                        <%= image_tag "icons/6" %>
+                      </div>
+                      <div class="col-xs-10" style="padding-left: 22px">
+                        <p class="paragraph text-left"><b><%= t('registration.title5') %></b> <br> <%= t('registration.desc5') %></p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-2" style="margin-top: 10px">
+                        <%= image_tag "icons/4" %>
+                      </div>
+                      <div class="col-xs-10" style="padding-left: 22px">
+                        <p class="paragraph text-left"><b><%= t('registration.title6') %></b> <br> <%= t('registration.desc6') %></p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-2" style="margin-top: 10px">
+                        <%= image_tag "icons/5" %>
+                      </div>
+                      <div class="col-xs-10" style="padding-left: 22px">
+                        <p class="paragraph text-left"><b><%= t('registration.title7') %></b> <br> <%= t('registration.desc7') %></p>
+                      </div>
+                    </div>
+                    <div class="row">
+                      <div class="col-xs-2" style="margin-top: 10px">
+                        <%= image_tag "icons/11" %>
+                      </div>
+                      <div class="col-xs-10" style="padding-left: 22px">
+                        <p class="paragraph text-left"><b><%= t('registration.title8') %></b> <br> <%= t('registration.desc8') %></p>
+                      </div>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="gap-50"></div>
+</div>
+
+<script>
+  $(document).ready(function(){
+    $('.modal').on('shown.bs.modal', function () {
+        $('#new_user').validate({
+          rules: {
+              username: {
+                  minlength: 3,
+                  maxlength: 15,
+                  required: true
+              },
+              password: {
+                  minlength: 3,
+                  maxlength: 15,
+                  required: true
+              }
+          },
+          highlight: function(element) {
+              $(element).closest('.form-group').addClass('has-error');
+          },
+          unhighlight: function(element) {
+              $(element).closest('.form-group').removeClass('has-error');
+          },
+          errorElement: 'span',
+          errorClass: 'help-block',
+          errorPlacement: function(error, element) {
+              if (element.parent('.input-group').length) {
+                  error.insertAfter(element.parent());
+              } else {
+                  error.insertAfter(element);
+              }
+          }
+      });
+    });
+  })
+</script>

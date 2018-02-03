@@ -1,0 +1,23 @@
+= render partial: '/messages/message', collection: @messages
+= paginate @messages, :outer_window => 3
+:javascript
+  jQuery(document).ready(function() {    
+    $('.fr-extract a').on('click', function(e){
+      if($(this).hasClass('arrow-up')){
+        $(this).parent().parent().children('.fr-view').css("max-height", "100px");
+        $(this).parent().parent().children('.fr-view').css("overflow", "hidden");
+        $(this).removeClass('arrow-up');
+        $(this).addClass('arrow-down');
+        $(this).children().removeClass('fa-chevron-up');
+        $(this).children().addClass('fa-chevron-down');
+      } else {
+        $(this).parent().parent().children('.fr-view').css("max-height", "100%");
+        $(this).parent().parent().children('.fr-view').css("overflow", "hidden");
+        $(this).removeClass('arrow-down');
+        $(this).addClass('arrow-up');
+        $(this).children().removeClass('fa-chevron-down');
+        $(this).children().addClass('fa-chevron-up');      
+      }
+      e.preventDefault();      
+    });
+  });

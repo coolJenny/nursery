@@ -1,0 +1,11 @@
+%ul
+  - current_user.daycare.health_records.where(alert_status: 0).each do |record|
+    - unless record.illness_name == ''
+      %li
+        %a.record-item{href: 'javascript:;', style: "color: #2f363d;text-decoration: none;", "data-id": record.id}
+          .department-todo
+            .todo-command
+              .detail-box
+                %h4=record.illness_name
+            %span.todo-footer
+              = record.department.name
