@@ -56,14 +56,6 @@ Start the web server and Sidekiq:
 
 # Seed data
 
-## Login details
-
-Admin/Super Admin: admin@daycare.org / mypassword
-Manager: manager@daycare.org / mypassword
-Worker: worker@daycare.org / mypassword
-Parent: parent@daycare.org / mypassword
-
-
 # Stripe
 
 When testing card authorisation and payments, please use the details in the following link:
